@@ -1,40 +1,32 @@
 #include <stdio.h>
 #include <stdlib.h>
+void nhap(float a[], int n) {
+    int i;
+    for(i = 0; i < n; i++) {
+        printf("Nhap ptu thu %d: ", i);
+        scanf("%f", a + i);
+    }
+}
+void in(float a[], int n) {
+    int i;
+    for(i = 0; i < n; i++) {
+        printf("%8.2f", *(a + i));
+    }
+}
 int main() {
-    int h, c;
-    printf("Nhap so hang va so cot: ");
-    scanf("%d%d", &h, &c);
-    int **ma = (int **)malloc(h * sizeof(int *));
-    if (ma == NULL) {
-        printf("Khong du bo nho!\n");
-        return 1;
-    }
-    for (int i = 0; i < h; i++) {
-        ma[i] = (int *)malloc(c * sizeof(int));
-        if (ma[i] == NULL) {
-            printf("Khong du bo nho tai dong %d!\n", i);
-            return 1;
-        }
-    }
-    //nhap dl
-    for (int i = 0; i < h; i++) {
-        for (int j = 0; j < c; j++) {
-            scanf("%d", &ma[i][j]);
-        }
-    }
-    //in ra
-    printf("Ma tran %dx%d vua tao:\n", h, c);
-    for (int i = 0; i < h; i++) {
-        for (int j = 0; j < c; j++) {
-            printf("%d\t", ma[i][j]);
-        }
-        printf("\n");
-    }
-    //giai phong ma tran
-    for (int i = 0; i < h; i++) {
-        free(ma[i]);
-    }
-    free(ma);
+    float *a;
+    int n;
+    do {
+        printf("Nhap so phan tu: ");
+        scanf("%d", &n);
+    } while(n <= 0 || n > 100);
+    a = (float*)malloc(n * sizeof(float));
+    nhap(a, n);
+    printf("\nMang ban dau:\n");
+    in(a, n);
+
+    free(a);
 
     return 0;
 }
+
